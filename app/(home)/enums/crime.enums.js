@@ -1,5 +1,5 @@
 export const OffenseCategories = [
-  { id: "F", label: "Felony" },
-  { id: "M", label: "Misdemeanor" },
-  { id: "V", label: "Violance" },
+  { id: "F", label: "felony" },
+  { id: "M", label: "misdemeanor" },
+  { id: "V", label: "violance" },
 ];

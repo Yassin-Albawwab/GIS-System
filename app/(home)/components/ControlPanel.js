@@ -1,13 +1,16 @@
 import BaseRadio from "@/Components/inputs/BaseRadio";
 import CheckboxList from "@/Components/inputs/CheckBoxList";
-import DropdownInput from "@/Components/inputs/DropdownInput";
-import { ProgressInput } from "@/Components/inputs/ProgressInput";
 import { BaseMapsOpts } from "@/utils/baseMaps";
-import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { OffenseCategories } from "../enums/crime.enums";
+import { changeLang, getTrans, tt, useLangStore } from "@/store/useLangStore";
 
-const ProjectTitle = "NYC Crime Distribution";
+const offenseCategoryTransKey = {
+  F: "felony",
+  M: "misdemeanor",
+  V: "violance",
+};
+
 export default function ControlPanel({
   layersList,
 
@@ -19,31 +22,30 @@ export default function ControlPanel({
   OffsCategoryStateList,
   setOffsCategoryStateList,
 }) {
-  const [show, setShow] = useState(true);
+  const { lang } = useLangStore();
+
   return (
     <div
+      dir={tt("ltr", "rtl")}
       className={twMerge(
         "flex flex-col gap-1.5 ring-1 ring-gray-300 ring-offset-20 rounded-lg",
-        !show && "/p-0",
       )}
     >
       <div className="flex justify-between items-center gap-18">
-        <h2 className="text-lg font-bold">{ProjectTitle}</h2>
+        <h2 className="text-lg font-bold">{getTrans("projectTitle")}</h2>
+
         <span
-          onClick={() => {
-            setShow((prev) => !prev);
-          }}
+          onClick={changeLang}
           className={twMerge(
             "self-end  bg-gray-300 rounded-xl cursor-pointer p-2",
-            !show && "text-lg",
           )}
         >
-          {show ? "⛶" : "⌞⌝"}
+          {tt("EN", "AR")}
         </span>
       </div>
-      <div className={twMerge("flex flex-col gap-2", !show && "hidden")}>
+      <div className={twMerge("flex flex-col gap-2")}>
         <div>
-          <h4 className="text-base -mb-2 font-bold">Base Map: </h4>
+          <h4 className="text-base -mb-2 font-bold">{getTrans("baseMap")}</h4>
           <BaseRadio
             containerClassName="mb-0 max-h-30 overflow-y-auto"
             value={baseMapState}
@@ -53,7 +55,7 @@ export default function ControlPanel({
         </div>
 
         <div>
-          <h4 className="text-base mb-1 font-bold">Layers: </h4>
+          <h4 className="text-base mb-1 font-bold">{getTrans("layers")}</h4>
           <div className="flex flex-col gap-2 ps-2">
             {layersList.map((x) => {
               return (
@@ -78,7 +80,7 @@ export default function ControlPanel({
                     type="checkbox"
                     id={x.id}
                   />
-                  <span className="ps-2 font-bold">{x.name}</span>
+                  <span className="ps-2 font-bold">{getTrans(x.name)}</span>
                 </label>
               );
             })}
@@ -86,7 +88,7 @@ export default function ControlPanel({
         </div>
 
         <CheckboxList
-          label="Filter Crimes by Category"
+          label={getTrans("filterCategory")}
           itemsList={OffenseCategories}
           idsState={OffsCategoryStateList}
           setIdsState={setOffsCategoryStateList}

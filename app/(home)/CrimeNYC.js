@@ -85,8 +85,8 @@ export default function CrimeNYC() {
   });
 
   const layersList = [
-    { id: "scatterplot", name: "Scatter plot", data: scatterplotCrimeLayer },
-    { id: "heatmap", name: "Heat map", data: heatMapCrimelayer },
+    { id: "scatterplot", name: "scatterPlot", data: scatterplotCrimeLayer },
+    { id: "heatmap", name: "heatMap", data: heatMapCrimelayer },
   ];
 
   useEffect(() => {
