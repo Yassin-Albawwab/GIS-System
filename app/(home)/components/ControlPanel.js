@@ -5,12 +5,6 @@ import { twMerge } from "tailwind-merge";
 import { OffenseCategories } from "../enums/crime.enums";
 import { changeLang, getTrans, tt, useLangStore } from "@/store/useLangStore";
 
-const offenseCategoryTransKey = {
-  F: "felony",
-  M: "misdemeanor",
-  V: "violance",
-};
-
 export default function ControlPanel({
   layersList,
 
@@ -40,7 +34,7 @@ export default function ControlPanel({
             "self-end  bg-gray-300 rounded-xl cursor-pointer p-2",
           )}
         >
-          {tt("EN", "AR")}
+          {tt("عربي", "ENG")}
         </span>
       </div>
       <div className={twMerge("flex flex-col gap-2")}>
