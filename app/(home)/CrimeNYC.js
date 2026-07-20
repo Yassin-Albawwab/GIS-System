@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Map, NavigationControl, useControl } from "@vis.gl/react-maplibre";
 
 import { MapboxOverlay as DeckOverlay } from "@deck.gl/mapbox";
@@ -26,14 +26,14 @@ const INITIAL_VIEW_STATE = {
 export default function CrimeNYC() {
   const [selected, setSelected] = useState(null);
   const [baseMapState, setBaseMapState] = useState(
-    BaseMapsOpts.find((x) => x.label == "Carto (voyager)").value,
+    BaseMapsOpts.find((x) => x.label == "Carto (voyager)")?.value ?? undefined,
   );
   const [mapLayersState, setMapLayersState] = useState([]);
-
   // Filteres States
   const [OffsCategoryStateList, setOffsCategoryStateList] = useState(
     reduce_listOfObj_to_simpleList(OffenseCategories),
   );
+  const isMountRef = useRef(false);
 
   const scatterplotCrimeLayer = new ScatterplotLayer({
     id: "scatterplot",
@@ -90,7 +90,32 @@ export default function CrimeNYC() {
   ];
 
   useEffect(() => {
+    // console.log("setMapLayersState on 1st mount");
     setMapLayersState([scatterplotCrimeLayer, heatMapCrimelayer]);
+  }, []);
+  // useEffect(() => {
+  //   // isMountRef.current = true;
+  //   console.log("isMOunt changed to true");
+  // }, []);
+
+  // console.log("isMountRef", isMountRef.current);
+
+  useEffect(() => {
+    if (!isMountRef.current) {
+      isMountRef.current = true;
+      // console.log("skip 1st mount and return ;");
+      return;
+    }
+    // console.log("after 1st mount");
+    // console.log("mapLayersState", mapLayersState);
+    setMapLayersState((prev) => {
+      const layersIds = reduce_listOfObj_to_simpleList(prev);
+      if (layersIds.includes("heatmap") && layersIds.includes("scatterplot"))
+        return [scatterplotCrimeLayer, heatMapCrimelayer];
+      if (layersIds.includes("scatterplot")) return [scatterplotCrimeLayer];
+      if (layersIds.includes("heatmap")) return [heatMapCrimelayer];
+      else return [];
+    });
   }, [OffsCategoryStateList]);
 
   function formatLabel(timestamp) {

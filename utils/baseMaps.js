@@ -64,10 +64,6 @@ export const BaseMapsOpts = [
     label: "Icgc (border)",
     value: "https://geoserveis.icgc.cat/styles/icgc_delimitacio_estandard.json",
   },
-  {
-    label: "",
-    value: "",
-  },
 
   {
     label: "ICGC Shadow Hypsometry Contours",

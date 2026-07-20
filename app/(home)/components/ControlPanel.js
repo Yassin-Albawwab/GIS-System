@@ -7,6 +7,7 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { OffenseCategories } from "../enums/crime.enums";
 
+const ProjectTitle = "NYC Crime Distribution";
 export default function ControlPanel({
   layersList,
 
@@ -26,17 +27,20 @@ export default function ControlPanel({
         !show && "/p-0",
       )}
     >
-      <span
-        onClick={() => {
-          setShow((prev) => !prev);
-        }}
-        className={twMerge(
-          "self-end  bg-gray-300 rounded-xl cursor-pointer p-2",
-          !show && "text-lg",
-        )}
-      >
-        {show ? "⛶" : "⌞⌝"}
-      </span>
+      <div className="flex justify-between items-center gap-18">
+        <h2 className="text-lg font-bold">{ProjectTitle}</h2>
+        <span
+          onClick={() => {
+            setShow((prev) => !prev);
+          }}
+          className={twMerge(
+            "self-end  bg-gray-300 rounded-xl cursor-pointer p-2",
+            !show && "text-lg",
+          )}
+        >
+          {show ? "⛶" : "⌞⌝"}
+        </span>
+      </div>
       <div className={twMerge("flex flex-col gap-2", !show && "hidden")}>
         <div>
           <h4 className="text-base -mb-2 font-bold">Base Map: </h4>
@@ -82,7 +86,7 @@ export default function ControlPanel({
         </div>
 
         <CheckboxList
-          label="Select Preferences"
+          label="Filter Crimes by Category"
           itemsList={OffenseCategories}
           idsState={OffsCategoryStateList}
           setIdsState={setOffsCategoryStateList}
