@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import { getTrans } from "@/store/useLangStore";
 import Label from "./ui/Label";
 
 export default function CheckboxList({
@@ -35,7 +36,7 @@ export default function CheckboxList({
               checked={idsState.includes(i.id)}
               onChange={() => handleCheckboxChange(i.id)}
             />
-            {i.label}
+            {getTrans(i.label)}
           </label>
         ))}
       </div>
