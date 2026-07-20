@@ -13,7 +13,6 @@ export default function ControlPanel({
   baseMapState,
   setBaseMapState,
 
-  mapLayersState,
   setMapLayersState,
 
   OffsCategoryStateList,
@@ -48,15 +47,7 @@ export default function ControlPanel({
             options={BaseMapsOpts}
           />
         </div>
-        {/* <div>
-          <h4 className="text-base -mb-2 font-bold">Offence Categoty: </h4>
-          <BaseRadio
-            containerClassName="mb-0 max-h-30 overflow-y-auto"
-            value={OffsCategoryState}
-            onChange={(e) => setOffsCategoryState(e.target.value)}
-            options={offList}
-          />
-        </div> */}
+
         <div>
           <h4 className="text-base mb-1 font-bold">Layers: </h4>
           <div className="flex flex-col gap-2 ps-2">
@@ -69,8 +60,8 @@ export default function ControlPanel({
                 >
                   <input
                     onChange={(e) => {
-                      console.log("e-checked: ", e.target.checked);
-                      console.log("e-value: ", e.target.defaultValue);
+                      // console.log("e-checked: ", e.target.checked);
+                      // console.log("e-value: ", e.target.defaultValue);
                       handleLayerPick(
                         x.id,
                         x.data,
@@ -89,17 +80,6 @@ export default function ControlPanel({
             })}
           </div>
         </div>
-        {/* <ProgressInput
-        label="Lat Input Range"
-        value={latitudeFilterState}
-        onChange={(v) => {
-          setLatitudeFilterState(v.target.value);
-          console.log("v:", v.target.value);
-        }}
-
-        // onBlur={() => form.setFieldTouched(field.name, true)}
-        // disabled={form.isSubmitting}
-      /> */}
 
         <CheckboxList
           label="Select Preferences"
@@ -107,27 +87,6 @@ export default function ControlPanel({
           idsState={OffsCategoryStateList}
           setIdsState={setOffsCategoryStateList}
         />
-        {/* <label htmlFor="latitude">latitude Control:</label>
-          <input
-            id="latitude-slider"
-            type="range"
-            min="-90"
-            max="90"
-            step="1"
-            value={latitudeState} // Binds the input element to state
-            onChange={handleChange} // Dispatches state changes back to React
-            style={{ width: "100%", maxWidth: "300px" }}
-          /> */}
-        {/* {
-            <RangeInput
-              min={-90}
-              max={90}
-              value={filterValue}
-              // animationSpeed={MS_PER_DAY * 30}
-              formatLabel={formatLabel}
-              onChange={setLatitudeState}
-            />
-          } */}
       </div>
     </div>
   );

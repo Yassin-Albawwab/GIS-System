@@ -1,13 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  Map,
-  NavigationControl,
-  useControl,
-  Source,
-  Layer,
-} from "@vis.gl/react-maplibre";
+import { Map, NavigationControl, useControl } from "@vis.gl/react-maplibre";
 
 import { MapboxOverlay as DeckOverlay } from "@deck.gl/mapbox";
 import "maplibre-gl/dist/maplibre-gl.css";
@@ -17,10 +11,9 @@ import { DataFilterExtension } from "@deck.gl/extensions";
 
 import PopupTooltip from "./components/PopupTooltip";
 import ControlPanel from "./components/ControlPanel";
-import RasterLayer from "./components/RasterLayer";
 import { reduce_listOfObj_to_simpleList } from "@/helpers/listOfObj";
 import { OffenseCategories } from "./enums/crime.enums";
-// source: Natural Earth http://www.naturalearthdata.com/ via geojson.xyz
+import { BaseMapsOpts } from "@/utils/baseMaps";
 
 const INITIAL_VIEW_STATE = {
   longitude: -73.935242,
@@ -32,22 +25,15 @@ const INITIAL_VIEW_STATE = {
 
 export default function CrimeNYC() {
   const [selected, setSelected] = useState(null);
-  const [baseMapState, setBaseMapState] = useState("carto");
+  const [baseMapState, setBaseMapState] = useState(
+    BaseMapsOpts.find((x) => x.label == "Carto (voyager)").value,
+  );
   const [mapLayersState, setMapLayersState] = useState([]);
 
   // Filteres States
   const [OffsCategoryStateList, setOffsCategoryStateList] = useState(
     reduce_listOfObj_to_simpleList(OffenseCategories),
   );
-
-  // Update the state as the user drags the slider thumb
-  // const handleChange = (event) => {
-  //   setLatitudeState(Number(event.target.value));
-  // };
-
-  // useEffect(() => {
-  //   setBaseMapState(BASEMAPS.carto_dark);
-  // }, []);
 
   const scatterplotCrimeLayer = new ScatterplotLayer({
     id: "scatterplot",
@@ -64,16 +50,16 @@ export default function CrimeNYC() {
           : [0, 211, 242];
     },
     // DataFilterExtension specific props
+    extensions: [new DataFilterExtension({ categorySize: 1 })],
     getFilterCategory: (d) => d.law_cat_cd,
     filterCategories: OffsCategoryStateList,
-    extensions: [new DataFilterExtension({ categorySize: 1 })],
 
     getLineColor: [0, 0, 0],
     getLineWidth: 5,
     radiusScale: 25,
     pickable: true,
     onHover: ({ object }) => {
-      console.log("o: ", object);
+      // console.log("o: ", object);
       setSelected(object);
     },
   });
@@ -84,14 +70,18 @@ export default function CrimeNYC() {
     loaders: [CSVLoader],
     aggregation: "SUM",
     gpuAggregation: true,
+
+    // onDataLoad: (x) => {
+    //   console.log("heatMap data loaded", x);
+    // },
     getPosition: (f) => [f.longitude, f.latitude],
     getWeight: (d) =>
       d.law_cat_cd == "F" ? 35 : d.law_cat_cd == "M" ? 25 : 15,
     radiusPixels: 35,
 
-    getFilterCategory: (d) => d.law_cat_cd,
-    filterCategories: OffsCategoryStateList,
-    extensions: [new DataFilterExtension({ categorySize: 1 })],
+    // getFilterCategory: (d) => d.law_cat_cd,
+    // filterCategories: OffsCategoryStateList,
+    //extensions: [new DataFilterExtension({ categorySize: 1 })],
   });
 
   const layersList = [

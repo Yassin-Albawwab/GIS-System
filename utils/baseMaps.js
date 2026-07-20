@@ -29,12 +29,12 @@ export const BaseMapsOpts = [
     value: "https://demotiles.maplibre.org/style.json",
   },
   {
-    label: "Carto (positron)",
-    value: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
-  },
-  {
     label: "Carto (voyager)",
     value: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
+  },
+  {
+    label: "Carto (positron)",
+    value: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
   },
   {
     label: "Carto (Dark)",

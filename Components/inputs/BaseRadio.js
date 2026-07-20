@@ -17,7 +17,7 @@ const BaseRadio = ({
   containerClassName,
   labelClassName,
 }) => {
-  console.log("value", value);
+  // console.log("value", value);
   const radioSize = { sm: "size-3", lg: "size-4" };
   const radioDotSize = { sm: "size-1", lg: "size-[5px]" };
   const labelSize = { sm: "text-sm", lg: "text-base" };

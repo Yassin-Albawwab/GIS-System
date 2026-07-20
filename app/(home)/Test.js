@@ -1,6 +1,3 @@
-// deck.gl
-// SPDX-License-Identifier: MIT
-// Copyright (c) vis.gl contributors
 "use client";
 
 import React, { useEffect, useState } from "react";
