@@ -1,4 +1,5 @@
 import TitleSub from "@/Components/TitleSub";
+import { getTrans, tt } from "@/store/useLangStore";
 import { Popup } from "@vis.gl/react-maplibre";
 import CategorySwitch from "./CategorySwitch";
 
@@ -13,14 +14,14 @@ export default function PopupTooltip({ selected }) {
       longitude={selected?.longitude}
       latitude={selected?.latitude}
     >
-      <div className="">
-        <TitleSub title={"longitude"} sub={selected?.longitude} />
-        <TitleSub title={"Latitude"} sub={selected?.latitude} />
-        <TitleSub title={"arrest_date"} sub={selected?.arrest_date} />
-        <TitleSub title={"pd_desc"} sub={selected?.pd_desc} />
-        <TitleSub title={"ofns_desc"} sub={selected?.ofns_desc} />
+      <div dir={tt("ltr", "rtl")} className="">
+        <TitleSub title={getTrans("longitude")} sub={selected?.longitude} />
+        <TitleSub title={getTrans("latitude")} sub={selected?.latitude} />
+        <TitleSub title={getTrans("arrestDate")} sub={selected?.arrest_date} />
+        <TitleSub title={getTrans("pdDesc")} sub={selected?.pd_desc} />
+        <TitleSub title={getTrans("ofnsDesc")} sub={selected?.ofns_desc} />
         <TitleSub
-          title={"Category"}
+          title={getTrans("category")}
           sub={<CategorySwitch status={selected?.law_cat_cd} />}
         />
       </div>

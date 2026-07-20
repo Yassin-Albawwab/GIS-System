@@ -7,5 +7,11 @@ export const enTr = {
   filterCategory: "Filter Crimes by Category",
   felony: "Felony",
   misdemeanor: "Misdemeanor",
-  violance: "Violance",
+  violance: "Violations",
+  longitude: "Longitude",
+  latitude: "Latitude",
+  arrestDate: "Arrest Date",
+  pdDesc: "PD Description",
+  ofnsDesc: "Offense Description",
+  category: "Category",
 };

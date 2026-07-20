@@ -8,4 +8,10 @@ export const arTr = {
   felony: "جناية",
   misdemeanor: "جنحة",
   violance: "مخالفة",
+  longitude: "خط الطول",
+  latitude: "خط العرض",
+  arrestDate: "تاريخ الاعتقال",
+  pdDesc: "وصف الشرطة",
+  ofnsDesc: "وصف الجريمة",
+  category: "الفئة",
 };

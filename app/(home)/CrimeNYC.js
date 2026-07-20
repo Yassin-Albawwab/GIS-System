@@ -14,6 +14,7 @@ import ControlPanel from "./components/ControlPanel";
 import { reduce_listOfObj_to_simpleList } from "@/helpers/listOfObj";
 import { OffenseCategories } from "./enums/crime.enums";
 import { BaseMapsOpts } from "@/utils/baseMaps";
+import { twMerge } from "tailwind-merge";
 
 const INITIAL_VIEW_STATE = {
   longitude: -73.935242,
@@ -138,7 +139,11 @@ export default function CrimeNYC() {
             "https://geoserveis.icgc.cat/servei/catalunya/mapa-base/wmts/orto/MON3857NW/{z}/{x}/{y}.png",
           ]}
         /> */}
-        <div className="absolute  top-4 right-10 z-10 bg-white p-4  rounded-lg">
+        <div
+          className={twMerge(
+            "absolute  top-4 inset-e-10 z-10 bg-white p-4  rounded-lg",
+          )}
+        >
           <ControlPanel
             {...{
               layersList,
