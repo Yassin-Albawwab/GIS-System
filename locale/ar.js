@@ -4,7 +4,7 @@ export const arTr = {
   layers: "الطبقات",
   scatterPlot: "مخطط التبعثر",
   heatMap: "الخريطة الحرارية",
-  filterCategory: "فلترة الجرائم حسب فئتها",
+  filterCategory: "فلترة الجرائم حسب نوعها",
   felony: "جناية",
   misdemeanor: "جنحة",
   violance: "مخالفة",

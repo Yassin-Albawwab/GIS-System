@@ -18,7 +18,7 @@ export default function ControlPanel({
   setOffsCategoryStateList,
 }) {
   const { lang } = useLangStore();
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   return (
     <div
       className={twMerge(
@@ -45,7 +45,14 @@ export default function ControlPanel({
         )}
       >
         <div className="flex justify-between items-center gap-18">
-          <h2 className="text-lg font-bold">{getTrans("projectTitle")}</h2>
+          <h2
+            className={twMerge(
+              "font-bold transition-all delay-[760ms] ",
+              show ? "text-lg opacity-100 " : "opacity-0 ",
+            )}
+          >
+            {getTrans("projectTitle")}
+          </h2>
 
           <span
             onClick={changeLang}
