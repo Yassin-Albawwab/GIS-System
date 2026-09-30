@@ -28,6 +28,11 @@ export const BaseMapsOpts = [
     label: "MabLibre",
     value: "https://demotiles.maplibre.org/style.json",
   },
+
+  {
+    label: "Carto (Dark)",
+    value: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+  },
   {
     label: "Carto (voyager)",
     value: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
@@ -36,10 +41,7 @@ export const BaseMapsOpts = [
     label: "Carto (positron)",
     value: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
   },
-  {
-    label: "Carto (Dark)",
-    value: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
-  },
+
   {
     label: "Icgc (main)",
     value: "https://geoserveis.icgc.cat/contextmaps/icgc.json",

@@ -18,16 +18,16 @@ import { twMerge } from "tailwind-merge";
 
 const INITIAL_VIEW_STATE = {
   longitude: -73.935242,
-  latitude: 40.73061,
-  zoom: 13,
-  bearing: 0,
+  latitude: 40.70061,
+  zoom: 11.5,
+  bearing: -10,
   pitch: 30,
 };
 
 export default function CrimeNYC() {
   const [selected, setSelected] = useState(null);
   const [baseMapState, setBaseMapState] = useState(
-    BaseMapsOpts.find((x) => x.label == "Carto (voyager)")?.value ?? undefined,
+    BaseMapsOpts.find((x) => x.label == "Carto (Dark)")?.value ?? undefined,
   );
   const [mapLayersState, setMapLayersState] = useState([]);
   // Filteres States
@@ -139,23 +139,18 @@ export default function CrimeNYC() {
             "https://geoserveis.icgc.cat/servei/catalunya/mapa-base/wmts/orto/MON3857NW/{z}/{x}/{y}.png",
           ]}
         /> */}
-        <div
-          className={twMerge(
-            "absolute  top-4 inset-e-10 z-10 bg-white p-4  rounded-lg",
-          )}
-        >
-          <ControlPanel
-            {...{
-              layersList,
-              baseMapState,
-              setBaseMapState,
-              mapLayersState,
-              setMapLayersState,
-              OffsCategoryStateList,
-              setOffsCategoryStateList,
-            }}
-          />
-        </div>
+
+        <ControlPanel
+          {...{
+            layersList,
+            baseMapState,
+            setBaseMapState,
+            mapLayersState,
+            setMapLayersState,
+            OffsCategoryStateList,
+            setOffsCategoryStateList,
+          }}
+        />
         {selected && <PopupTooltip selected={selected} />}
         <DeckGLOverlay layers={mapLayersState} controller={true} />
         <NavigationControl position="top-left" />
